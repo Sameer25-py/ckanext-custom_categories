@@ -1,0 +1,9 @@
+{% ckan_extends %}
+{% block extras %}
+  {% if pkg_dict.custom_category %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Category") }}</th>
+      <td class="dataset-details">{{ pkg_dict.custom_category }}</td>
+    </tr>
+  {% endif %}
+{% endblock %}

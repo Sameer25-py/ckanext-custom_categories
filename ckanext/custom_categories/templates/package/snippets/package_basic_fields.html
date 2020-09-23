@@ -1,0 +1,24 @@
+{% ckan_extends %}
+
+
+{% block package_basic_fields_custom %}
+{% set categories = ['Health','Economy&Finance','Demography','Environment_Energy','Public-Safety','Education',
+                  'Government&Public-Sector','Agriculture&Food','Forests','Cities&Regions','Connectivity',
+                  'Housing&Public-Sector','Culture','Manufacturing','Science&Technology']%}
+
+<div class="form-group">
+  <label class="control-label" for="custom_category">{{ _("Category") }}</label>
+  <div class="controls">
+    <div class="row">
+      <div class="col-md-6">
+        <select id="custom_category" name="custom_category" data-module="autocomplete">
+          {% for category in categories %}
+          <option value="{{category}}">{{category}}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- {{ form.input('custom_category', label=_('Custom Categories'), id='custom-category', placeholder=_('CustomCategory'), value=data.custom_category, classes=['control-medium']) }}  -->
+{% endblock %}
