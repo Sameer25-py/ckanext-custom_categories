@@ -17,9 +17,6 @@ def get_allCategories():
                 'Government&Public-Sector','Agriculture&Food','Forests','Cities&Regions','Connectivity',
                 'Housing&Public-Sector','Culture','Manufacturing','Science&Technology']
 
-def get_Category_filters():
-    categories= self.get_allCategories()
-    return
 
 class Custom_CategoriesPlugin(plugins.SingletonPlugin,toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IConfigurer)
@@ -75,3 +72,9 @@ class Custom_CategoriesPlugin(plugins.SingletonPlugin,toolkit.DefaultDatasetForm
     def organization_facets(self,facets_dict, organization_type, package_type):
         return facets_dict
     
+    #ITemplateHelpers
+
+    def get_helpers(self):
+        return {
+            "get_allCategories":get_allCategories
+        }
