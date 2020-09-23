@@ -1,20 +1,31 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.plugins.toolkit import Invalid
-import pprint
+import ckan.lib.helpers as h
 
 
-#Category Validator
+
+# Category Validator
 def check_empty(key,data,errors,context):
     if not data.get(key,None):
         errors[key].append('Category field is empty')
+    return
+
+# Template Helper Functions
+def get_allCategories():
+    return ['Health','Economy&Finance','Demography','Environment&Energy','Public-Safety','Education',
+                'Government&Public-Sector','Agriculture&Food','Forests','Cities&Regions','Connectivity',
+                'Housing&Public-Sector','Culture','Manufacturing','Science&Technology']
+
+def get_Category_filters():
+    categories= self.get_allCategories()
     return
 
 class Custom_CategoriesPlugin(plugins.SingletonPlugin,toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IFacets) 
-
+    plugins.implements(plugins.ITemplateHelpers)
     # IConfigurer
 
     def update_config(self, config_):
@@ -63,3 +74,4 @@ class Custom_CategoriesPlugin(plugins.SingletonPlugin,toolkit.DefaultDatasetForm
     
     def organization_facets(self,facets_dict, organization_type, package_type):
         return facets_dict
+    
