@@ -2,9 +2,6 @@
 
 
 {% block package_basic_fields_custom %}
-{% set categories = ['Health','Economy&Finance','Demography','Environment_Energy','Public-Safety','Education',
-                  'Government&Public-Sector','Agriculture&Food','Forests','Cities&Regions','Connectivity',
-                  'Housing&Public-Sector','Culture','Manufacturing','Science&Technology']%}
 
 <div class="form-group">
   <label class="control-label" for="custom_category">{{ _("Category") }}</label>
@@ -12,7 +9,7 @@
     <div class="row">
       <div class="col-md-6">
         <select id="custom_category" name="custom_category" data-module="autocomplete">
-          {% for category in categories %}
+          {% for category in h.get_allCategories() %}
           <option value="{{category}}">{{category}}</option>
           {% endfor %}
         </select>
