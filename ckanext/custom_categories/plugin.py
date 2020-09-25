@@ -13,10 +13,11 @@ def check_empty(key,data,errors,context):
 
 # Template Helper Functions
 def get_allCategories():
-    return ['Health','Economy&Finance','Demography','Environment&Energy','Public-Safety','Education',
-                'Government&Public-Sector','Agriculture&Food','Forests','Cities&Regions','Connectivity',
-                'Housing&Public-Sector','Culture','Manufacturing','Science&Technology']
-
+    categories=['Health','Economy & Finance','Demography','Environment & Energy','Public Safety','Education',
+    'Government & Public Sector','Agriculture, Food & Forests','Cities & Regions','Connectivity',
+    'Housing & Public Sector','Culture','Manufecturing','Science & Technology']
+    
+    return categories 
 
 class Custom_CategoriesPlugin(plugins.SingletonPlugin,toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IConfigurer)
