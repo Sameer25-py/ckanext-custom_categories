@@ -3,16 +3,19 @@
 
 {% block package_basic_fields_custom %}
 
-<div class="form-group">
-  <label class="control-label" for="custom_category">{{ _("Category") }}</label>
+<div class="form-group control-full" >
+  <label class="control-label" for="custom_category"><span style="color:#c6898b"> * </span>{{ _("Category") }}</label>
   <div class="controls">
     <div class="row">
-      <div class="col-md-6">
-        <select id="custom_category" name="custom_category" data-module="autocomplete">
+      <div class="col-md-6" style="display:block">
+        <select id="custom_category" name="custom_category">
+          <option value="" {% if not data.custom_category or errors.custom_category %}selected {% endif %} disabled>Select A Category</option>
           {% for category in h.get_allCategories() %}
-          <option value="{{category}}">{{category}}</option>
+
+          <option value="{{category}}" {% if data.custom_category == category %} selected {% endif %}>{{category}}</option>
           {% endfor %}
         </select>
+       {% if errors.custom_category %} <span class="error-block"> Missing value </span> {% endif %}
       </div>
     </div>
   </div>
