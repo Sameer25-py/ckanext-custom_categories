@@ -1,0 +1,7 @@
+{% ckan_extends %}
+
+{% block package_metadata_fields %}
+{% set loc_attrs = {'data-module': 'autocomplete', 'data-module-locations': '', 'data-module-source': '/api/2/util/tag/autocomplete?incomplete=?' } %}
+{{ form.input('location', id='field-locations', label=_('Locations'), placeholder=_('Enter Locations'), value="{{data.location.split(",")}}", error=errors.location, classes=['control-full'], attrs=loc_attrs) }}
+{{super()}}
+{% endblock %}

@@ -6,4 +6,11 @@
       <td class="dataset-details">{{ pkg_dict.custom_category }}</td>
     </tr>
   {% endif %}
+  {% if pkg_dict.location %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Locations") }}</th>
+      <td class="dataset-details">{{ pkg_dict.location }}</td>
+    </tr>
+
+  {% endif %}
 {% endblock %}
