@@ -3,6 +3,8 @@ import ckan.plugins.toolkit as toolkit
 from ckan.plugins.toolkit import Invalid
 import ckan.lib.helpers as h
 
+LOCATION_LIST = ['Pakistan','India']
+
 #locations
 def create_Locations():
     user = toolkit.get_action('get_site_user')({'ignore_auth':True} ,{})
@@ -13,7 +15,7 @@ def create_Locations():
     except toolkit.ObjectNotFound:
         data = {'name': 'data_locations'}
         vocab = toolkit.get_action('vocabulary_create')(context, data)
-        for tag in ['Pakistan','India']:
+        for tag in LOCATION_LIST:
             data = {'name': tag, 'vocabulary_id': vocab['id']}
             toolkit.get_action('tag_create')(context, data)
 
@@ -47,6 +49,8 @@ def get_allCategories():
 
     return categories
 
+def get_allLocations():
+    return LOCATION_LIST
 
 class Custom_CategoriesPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IConfigurer)
@@ -133,5 +137,7 @@ class Custom_CategoriesPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetFor
     def get_helpers(self):
         return {
             "get_allCategories": get_allCategories,
-            "getLocations":data_locations
+            "getLocations":data_locations,
+            "get_allLocations": get_allLocations
+
         }

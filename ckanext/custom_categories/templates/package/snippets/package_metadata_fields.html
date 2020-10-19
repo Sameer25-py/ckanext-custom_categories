@@ -1,7 +1,21 @@
 {% ckan_extends %}
 
 {% block package_metadata_fields %}
-{% set loc_attrs = {'data-module': 'autocomplete', 'data-module-locations': '', 'data-module-source': '/api/2/util/tag/autocomplete?incomplete=?' } %}
-{{ form.input('location', id='field-locations', label=_('Locations'), placeholder=_('Enter Locations'), value="{{data.location.split(",")}}", error=errors.location, classes=['control-full'], attrs=loc_attrs) }}
+<div class="form-group control-full" >
+    <label class="control-label" for="field-locations"><span style="color:#c6898b"> * </span>{{ _("Location") }}</label>
+    <div class="controls">
+      <div class="row">
+        <div class="col-md-6 form-group" >
+          <select id="field-locatios" name="location" multiple>
+            {% for location in h.get_allLocations() %}
+  
+            <option value="{{location}}" {% if data.location == location %} selected {% endif %}>{{location}}</option>
+            {% endfor %}
+          </select>
+         {% if errors.location %} <span class="error-block"> Missing value </span> {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
 {{super()}}
 {% endblock %}
